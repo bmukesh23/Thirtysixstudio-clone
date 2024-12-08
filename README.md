@@ -15,12 +15,12 @@ Visit the original ThirtysixStudio website: [https://thirtysixstudio.com/](thirt
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/bmukesh23/thirtysixstudio-clone.git
+    git clone https://github.com/bmukesh23/Thirtysixstudio-clone.git
     ```
 
 2. **Navigate to the project directory:**
     ```bash
-    cd thirtysixstudio-clone
+    cd Thirtysixstudio-clone
     ```
 
 3. **Install Dependencies:**
