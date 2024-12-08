@@ -1,5 +1,8 @@
 # 🌶️ Thirtysixstudio clone
-A ThirtysixStudio Clone Website, developed to demonstrate my proficiency in GSAP animations and create an interactive, minimalistic, and visually appealing website. The key feature of this project is an engaging user experience, where clicking the "ThirtysixStudio" text triggers the appearance of 3D elements and dynamic effects. These transitions are brought to life by randomly swapping 2D images, enhancing the overall smooth scrolling and animation effects. The project serves both as a showcase of my skills and a learning exercise in creating modern, interactive web designs.
+A ThirtysixStudio clone showcasing my GSAP animation skills, with an interactive, minimalistic design. Clicking the "ThirtysixStudio" text triggers dynamic 3D elements and smooth transitions, powered by randomly swapping 2D images. This project highlights my proficiency in creating modern, engaging web experiences.
+
+## 🔗 Link to the original website
+Visit the original ThirtysixStudio website: [https://thirtysixstudio.com/](thirtysixstudio.com)
 
 ## 📦 Technologies
 
@@ -9,14 +12,6 @@ A ThirtysixStudio Clone Website, developed to demonstrate my proficiency in GSAP
 - `Tailwind CSS`
 
 ## 🚦Running the project:
-
-### Prerequisites
-
-Before you begin, ensure you have the following installed on your machine:
-
-- [Node.js](https://nodejs.org/): Make sure to install Node.js, which includes npm (Node Package Manager).
-
-## Steps
 
 1. **Clone the repository:**
     ```bash
