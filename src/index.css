@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    * {
+        @apply box-border p-0 m-0;
+    }
+
+    body{
+        @apply bg-black text-white font-helvetica px-3;
+    }
+}
+
+@layer components{
+    canvas{
+        @apply pointer-events-none;
+    }
+
+    span.growing{
+        @apply bg-red-600;
+    }
+}
