@@ -12,5 +12,8 @@ export const theme = {
     fontFamily: {
       helvetica: ['Helvetica Now Display', 'sans-serif'],
     },
+    colors: {
+      customRed: '#fd2c2a',
+    }
   },
 };

@@ -8,7 +8,7 @@
     }
 
     body{
-        @apply bg-black text-white font-helvetica px-3;
+        @apply bg-black text-white font-helvetica px-3 select-none;
     }
 }
 
@@ -16,8 +16,4 @@
     canvas{
         @apply pointer-events-none;
     }
-
-    span.growing{
-        @apply bg-red-600;
-    }
-}
+}  
