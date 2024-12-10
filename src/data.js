@@ -7,7 +7,7 @@ export default [
             size: 188,
             top: 16,
             left: 17,
-            zIndex: 0,
+            zIndex: 5,
         },
         {
             startIndex: 150,
@@ -25,7 +25,7 @@ export default [
             size: 160,
             top: 8,
             left: 58,
-            zIndex: 0,
+            zIndex: 5,
         },
         {
             startIndex: 450,
@@ -34,7 +34,7 @@ export default [
             size: 137,
             top: 2,
             left: 40,
-            zIndex: 0,
+            zIndex: 5,
         },
         {
             startIndex: 600,
@@ -43,7 +43,7 @@ export default [
             size: 269,
             top: 24,
             left: 68,
-            zIndex: 0,
+            zIndex: 5,
         },
         {
             startIndex: 750,
@@ -52,7 +52,7 @@ export default [
             size: 205,
             top: 10,
             left: 2,
-            zIndex: 0,
+            zIndex: 5,
         },
         {
             startIndex: 900,
@@ -61,7 +61,7 @@ export default [
             size: 158,
             top: 77,
             left: 11,
-            zIndex: 0,
+            zIndex: 5,
         },
     ],
     [

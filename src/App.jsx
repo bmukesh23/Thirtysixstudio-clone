@@ -148,15 +148,15 @@ function App() {
 
       <span
         ref={mouseRef}
-        className="bg-customRed rounded-full fixed w-5 h-5 z-10"
+        className="bg-customRed rounded-full fixed w-5 h-5 top-[-20px] left-[-20px] z-10"
       />
 
       <div className="relative">
         {showCanvas && data[0].map((canvasdets, index) => <Canvas key={index} details={canvasdets} />)}
-        <div className="w-full relative h-screen z-[1]">
+        <div className="w-full relative h-screen">
           <Navbar />
 
-          <div className="textcontainer w-full px-[25%] py-12">
+          <div className="w-full px-[25%] py-12">
             <div className="w-[45%] flex flex-col gap-6">
               <h3 className="text-3xl">
                 At Thirtysixstudio, we build immersive digital experiences for
