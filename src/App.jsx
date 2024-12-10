@@ -1,31 +1,24 @@
 import { useEffect, useState, useRef } from "react";
 import Canvas from "./Canvas";
 import data from "./data";
+import Navbar from "./Navbar";
+import About from "./About";
 import LocomotiveScroll from "locomotive-scroll";
 import gsap from "gsap";
 
 function App() {
   const [showCanvas, setShowCanvas] = useState(false);
   const headingRef = useRef(null);
-  const navbarRef = useRef(null);
   const growingSpan = useRef(null);
+  const mouseRef = useRef(null);
+  const mainRef = useRef(null);
 
   useEffect(() => {
-    // Initialize Locomotive Scroll
     new LocomotiveScroll();
   }, []);
 
+  //text animation
   useEffect(() => {
-    // Animate Navbar
-    gsap.fromTo(
-      navbarRef.current,
-      { y: "-100%", opacity: 0 },
-      { y: "0%", opacity: 1, duration: 1, ease: "power3.out" }
-    );
-  }, []);
-
-  useEffect(() => {
-    // Split text into individual spans for animation
     const header = headingRef.current;
     const text = header.textContent;
     header.innerHTML = text
@@ -33,7 +26,6 @@ function App() {
       .map((letter) => `<span class="letter inline-block">${letter === " " ? "&nbsp;" : letter}</span>`)
       .join("");
 
-    // Animate each letter on the y-axis
     gsap.fromTo(
       ".letter",
       { y: 100, opacity: 0 },
@@ -47,14 +39,21 @@ function App() {
     );
   }, []);
 
+  //growingspan animation
   useEffect(() => {
     const handleClick = (e) => {
+      gsap.to(mouseRef.current, {
+        backgroundColor: "white"
+      });
+
       setShowCanvas((prevShowCanvas) => {
         if (!prevShowCanvas) {
           gsap.set(growingSpan.current, {
-            top: e.clientY,
-            left: e.clientX,
+            top: e.clientY - 20,
+            left: e.clientX - 20,
+
           });
+
 
           gsap.to("body", {
             color: "#000",
@@ -65,7 +64,7 @@ function App() {
 
           gsap.to(growingSpan.current, {
             scale: 1000,
-            duration: 2,
+            duration: 1.2,
             ease: "power2.inOut",
             onComplete: () => {
               gsap.set(growingSpan.current, {
@@ -81,45 +80,82 @@ function App() {
             duration: 1.2,
             ease: "power2.inOut",
           });
+
+          gsap.to(mouseRef.current, {
+            backgroundColor: "#fd2c2a"
+          });
         }
 
         return !prevShowCanvas;
       });
     };
 
-    const headingElement = headingRef.current;
-    headingElement.addEventListener("click", handleClick);
+    const targetElement = mainRef.current;
+    targetElement.addEventListener("click", handleClick);
 
-    return () => headingElement.removeEventListener("click", handleClick);
+    return () => targetElement.removeEventListener("click", handleClick);
+  }, []);
+
+  //mouse animation
+  useEffect(() => {
+    const mainElement = mainRef.current;
+    const headingElement = headingRef.current;
+
+    const handleMouseMove = (e) => {
+      gsap.to(mouseRef.current, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 1,
+        ease: "back.out",
+        overwrite: "auto",
+      });
+    }
+
+    const handleMouseEnter = () => {
+      gsap.to(mouseRef.current, {
+        scale: 4,
+        backgroundImage: "url('https://thirtysixstudio.com/peppers/pepperA/57.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      });
+    }
+
+    const handleMouseLeave = () => {
+      gsap.to(mouseRef.current, {
+        scale: 1,
+        backgroundImage: "none",
+      });
+    }
+
+    mainElement.addEventListener("mousemove", handleMouseMove);
+    headingElement.addEventListener("mouseenter", handleMouseEnter);
+    headingElement.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      mainElement.removeEventListener("mousemove", handleMouseMove);
+      headingElement.removeEventListener("mouseenter", handleMouseEnter);
+      headingElement.removeEventListener("mouseleave", handleMouseLeave);
+    };
+
   }, []);
 
   return (
-    <>
+    <main ref={mainRef} className="w-full min-h-screen mb-40">
       <span
         ref={growingSpan}
-        className="growing block rounded-full fixed top-[-20px] left-[-20px] w-5 h-5"
-      ></span>
+        className="bg-red-600 block rounded-full fixed top-[-20px] left-[-20px] w-5 h-5"
+      />
 
-      <div className="w-full relative min-h-screen">
-        {showCanvas &&
-          data[0].map((canvasdets, index) => <Canvas key={index} details={canvasdets} />)}
+      <span
+        ref={mouseRef}
+        className="bg-customRed rounded-full fixed w-5 h-5 z-10"
+      />
+
+      <div className="relative">
+        {showCanvas && data[0].map((canvasdets, index) => <Canvas key={index} details={canvasdets} />)}
         <div className="w-full relative h-screen z-[1]">
-          <nav ref={navbarRef} className="w-full px-3 py-[14px] flex justify-between z-50 border-b border-slate-800">
-            <div className="text-[15px]">Thirtysixstudio</div>
-            <div className="flex gap-10">
-              {["What we do", "Who we are", "How we give back", "Talk to us"].map(
-                (link, index) => (
-                  <a
-                    key={index}
-                    href={`#${link.toLowerCase()}`}
-                    className="text-sm hover:text-gray-300"
-                  >
-                    {link}
-                  </a>
-                )
-              )}
-            </div>
-          </nav>
+          <Navbar />
+
           <div className="textcontainer w-full px-[25%] py-12">
             <div className="w-[45%] flex flex-col gap-6">
               <h3 className="text-3xl">
@@ -132,48 +168,21 @@ function App() {
               <p>Scroll</p>
             </div>
           </div>
-          <div className="w-full pt-40 pl-6 border-b border-gray-500 pb-16">
+
+          <div className="w-full pt-40 pl-6 border-b border-slate-800 pb-16">
             <h1 ref={headingRef} className="text-[14rem] leading-none">
               Thirtysixstudio
             </h1>
           </div>
+
         </div>
       </div>
-      <div className="w-full relative h-screen mt-60 px-10">
-        {showCanvas &&
-          data[1].map((canvasdets, index) => <Canvas key={index} details={canvasdets} />)}
 
-        <h1 className="text-8xl">About the brand</h1>
-        <p className="text-4xl w-4/5 my-10">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
-          culpa dicta facere ipsa esse sint impedit velit praesentium
-          voluptatibus molestiae!
-        </p>
-
-        <div className="flex items-center justify-between bg-green-600 px-10 gap-10 rounded-2xl">
-          <img
-            className="w-1/2 rounded-xl my-20"
-            src="https://directus.funkhaus.io/assets/b3b5697d-95a0-4af5-ba59-b1d423411b1c?withoutEnlargement=true&fit=outside&width=1400&height=1400"
-          />
-          <p className="text-black text-2xl w-1/2 text-justify">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-            dolor possimus cupiditate enim odit rem omnis debitis assumenda
-            deserunt, mollitia perspiciatis. Quo, officiis dolore distinctio,
-            veniam commodi ut eveniet dicta repellat, aliquid architecto
-            nesciunt odit iure nam aliquam cumque laboriosam voluptate
-            blanditiis animi omnis eum sequi accusamus? Officiis accusamus
-            dolores, aliquid beatae totam assumenda, ex facere nihil provident,
-            quo atque vitae asperiores laboriosam unde. Omnis exercitationem
-            atque nam deleniti tempora, hic veritatis voluptatem quisquam. Quia
-            dolores similique voluptates, atque dolorem nihil earum,
-            repudiandae voluptatum, facilis at quisquam. Eos, voluptate adipisci
-            labore autem velit doloribus aperiam rerum eum veritatis! Ea,
-            consectetur.
-          </p>
-        </div>
+      <div className="relative mt-60 px-10">
+        {showCanvas && data[1].map((canvasdets, index) => <Canvas key={index} details={canvasdets} />)}
+        <About />
       </div>
-      <div className="w-full h-screen" />
-    </>
+    </main>
   );
 }
 
