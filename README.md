@@ -37,7 +37,7 @@ Visit the original ThirtysixStudio website: [https://thirtysixstudio.com/](thirt
     Open your web browser and go to [http://localhost:5173](http://localhost:5173). You should see the website running locally.
 
 
-  ## Lighthouse Report (Page Speed Scores)
+  ## 💈Lighthouse Report (Page Speed Scores)
   
   - **Performance:** 99/100
   - **Accessibility:** 100/100

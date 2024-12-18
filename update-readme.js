@@ -52,7 +52,7 @@ const updateReadme = (newScores) => {
   let readmeContent = fs.readFileSync(readmePath, 'utf-8');
 
   // Replace the old Lighthouse section or append new one
-  readmeContent = readmeContent.replace(/## Lighthouse Report.*/s, newScores);
+  readmeContent = readmeContent.replace(/## 💈Lighthouse Report.*/s, newScores);
 
   // Write the updated README back to the file
   fs.writeFileSync(readmePath, readmeContent);
