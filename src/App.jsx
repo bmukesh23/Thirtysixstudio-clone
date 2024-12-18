@@ -15,9 +15,9 @@ function App() {
 
   useEffect(() => {
     new LocomotiveScroll();
-  }, []);
+  }, [showCanvas]);
 
-  //text animation
+  // Text animation
   useEffect(() => {
     const header = headingRef.current;
     const text = header.textContent;
@@ -39,7 +39,7 @@ function App() {
     );
   }, []);
 
-  //growingspan animation
+  // Growing span animation
   useEffect(() => {
     const handleClick = (e) => {
       gsap.to(mouseRef.current, {
@@ -51,9 +51,7 @@ function App() {
           gsap.set(growingSpan.current, {
             top: e.clientY - 20,
             left: e.clientX - 20,
-
           });
-
 
           gsap.to("body", {
             color: "#000",
@@ -96,51 +94,51 @@ function App() {
     return () => targetElement.removeEventListener("click", handleClick);
   }, []);
 
-  //mouse animation
+  // Mouse animation
   useEffect(() => {
     const mainElement = mainRef.current;
-    const headingElement = headingRef.current;
+    let mouseStopTimeout;
 
     const handleMouseMove = (e) => {
+      clearTimeout(mouseStopTimeout);
+
       gsap.to(mouseRef.current, {
-        x: e.clientX,
-        y: e.clientY,
+        x: e.clientX + 10,
+        y: e.clientY + 10,
         duration: 1,
         ease: "back.out",
         overwrite: "auto",
       });
-    }
 
-    const handleMouseEnter = () => {
-      gsap.to(mouseRef.current, {
-        scale: 4,
-        backgroundImage: "url('https://thirtysixstudio.com/peppers/pepperA/57.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      });
-    }
-
-    const handleMouseLeave = () => {
       gsap.to(mouseRef.current, {
         scale: 1,
         backgroundImage: "none",
       });
-    }
+
+      mouseStopTimeout = setTimeout(() => {
+        gsap.to(mouseRef.current, {
+          scale: 4,
+          backgroundImage: "url('https://thirtysixstudio.com/peppers/pepperA/57.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        });
+      }, 500);
+    };
 
     mainElement.addEventListener("mousemove", handleMouseMove);
-    headingElement.addEventListener("mouseenter", handleMouseEnter);
-    headingElement.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       mainElement.removeEventListener("mousemove", handleMouseMove);
-      headingElement.removeEventListener("mouseenter", handleMouseEnter);
-      headingElement.removeEventListener("mouseleave", handleMouseLeave);
+      clearTimeout(mouseStopTimeout);
     };
-
   }, []);
 
   return (
-    <main ref={mainRef} className="w-full min-h-screen mb-40">
+    <main
+      data-scroll-container
+      ref={mainRef}
+      className="w-full min-h-screen mb-40"
+    >
       <span
         ref={growingSpan}
         className="bg-red-600 block rounded-full fixed top-[-20px] left-[-20px] w-5 h-5"
@@ -156,8 +154,8 @@ function App() {
         <div className="w-full relative h-screen">
           <Navbar />
 
-          <div className="w-full px-[25%] py-12">
-            <div className="w-[45%] flex flex-col gap-6">
+          <div className="w-full px-1 lg:px-[25%] py-12">
+            <div className="w-full lg:w-[45%] flex flex-col gap-6">
               <h3 className="text-3xl">
                 At Thirtysixstudio, we build immersive digital experiences for
                 brands with a purpose.
@@ -169,16 +167,15 @@ function App() {
             </div>
           </div>
 
-          <div className="w-full pt-40 pl-6 border-b border-slate-800 pb-16">
-            <h1 ref={headingRef} className="text-[14rem] leading-none">
+          <div className="w-full lg:pt-40 lg:pl-6 border-b border-slate-800 lg:pb-16">
+            <h1 ref={headingRef} className="text-[8rem] lg:text-[14rem] leading-none">
               Thirtysixstudio
             </h1>
           </div>
-
         </div>
       </div>
 
-      <div className="relative mt-60 px-10">
+      <div className="relative mt-60 px-1 lg:px-10">
         {showCanvas && data[1].map((canvasdets, index) => <Canvas key={index} details={canvasdets} />)}
         <About />
       </div>
