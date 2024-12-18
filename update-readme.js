@@ -29,14 +29,13 @@ const extractScores = (report) => {
   const accessibility = report.categories.accessibility?.score * 100 || 0;
   const bestPractices = report.categories['best-practices']?.score * 100 || 0;
   const seo = report.categories.seo?.score * 100 || 0;
-  const pwa = report.categories.pwa?.score * 100 || 0; 
 
-  return { performance, accessibility, bestPractices, seo, pwa };
+  return { performance, accessibility, bestPractices, seo};
 };
 
 // Create a string with the scores
 const createScoreString = (scores) => {
-  const { performance, accessibility, bestPractices, seo, pwa } = scores;
+  const { performance, accessibility, bestPractices, seo} = scores;
   return `
   ## Lighthouse Report (Page Speed Scores)
   
@@ -44,7 +43,6 @@ const createScoreString = (scores) => {
   - **Accessibility:** ${accessibility}/100
   - **Best Practices:** ${bestPractices}/100
   - **SEO:** ${seo}/100
-  - **PWA:** ${pwa}/100
   `;
 };
 
