@@ -63,4 +63,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
           git commit -m "Update Lighthouse scores"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/bmukesh23/Thirtysixstudio-clone.git
