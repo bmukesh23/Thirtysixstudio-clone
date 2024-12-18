@@ -3,33 +3,43 @@ name: Lighthouse CI
 on:
   push:
     branches:
-      - master
+      - master  # or the branch you're working with
   pull_request:
     branches:
-      - master
+      - master  # or the branch you're working with
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
+      # Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Create the lhci-report folder to store the Lighthouse report
+      - name: Create lhci-report folder
+        run: mkdir -p lhci-report
+
+      # Run Lighthouse CI to generate the report
       - name: Run Lighthouse CI
         run: npx lhci autorun
 
+      # Update README with Lighthouse scores
       - name: Update README with Lighthouse scores
         run: node update-readme.js
 
+      # Commit and push the updated README
       - name: Commit updated README
         run: |
           git config --global user.name "github-actions[bot]"
