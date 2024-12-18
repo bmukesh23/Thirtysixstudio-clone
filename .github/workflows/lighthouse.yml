@@ -26,19 +26,31 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm install
+      
+      # Install dependencies required for Headless Chrome
+      - name: Install headless chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            wget \
+            gnupg \
+            libxss1 \
+            libappindicator3-1 \
+            libindicator7 \
+            libgbm-dev
 
       # Create lhci-report folder to store the Lighthouse report
-      - name: Create lhci-report folder
+      - name: Ensure the lhci-report folder exists
         run: mkdir -p lhci-report
 
       # Run Lighthouse CI to generate the report
       - name: Run Lighthouse CI
         # run: npx lighthouse --output-path=lhci-report/report.json 
-        run: npx lighthouse https://thirtysixstudiooclone.vercel.app --output json --output-path=lhci-report/report.json
+        run: npx lighthouse https://thirtysixstudiooclone.vercel.app --output json --output-path=lhci-report/report.json --chrome-flags="--no-sandbox --headless"
 
       # Check if the report is generated
       - name: Check report
-        run: ls -la ./lhci-report/report.json
+        run: ls -la lhci-report/report.json
 
       # Update README with Lighthouse scores
       - name: Update README with Lighthouse scores
