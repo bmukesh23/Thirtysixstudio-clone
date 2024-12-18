@@ -11,10 +11,6 @@ Visit the original ThirtysixStudio website: [https://thirtysixstudio.com/](thirt
 - `GSAP`
 - `Tailwind CSS`
 
-## Lighthouse Performance Report
-
-![Lighthouse Report](./public/lighthouse-report.png)
-
 ## 🚦Running the project:
 
 1. **Clone the repository:**
