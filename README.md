@@ -1,5 +1,5 @@
 # 🌶️ Thirtysixstudio clone
-A ThirtysixStudio clone showcasing my GSAP animation skills, with an interactive, minimalistic design. Clicking the "ThirtysixStudio" text triggers dynamic 3D elements and smooth transitions, powered by randomly swapping 2D images. This project highlights my proficiency in creating modern, engaging web experiences.
+A ThirtysixStudio clone showcasing my GSAP animation skills, with an interactive, minimalistic design. Clicking on screen triggers dynamic 3D elements and smooth transitions, powered by randomly swapping 2D images. This project highlights my proficiency in creating modern, engaging web experiences.
 
 ## 🔗 Link to the original website
 Visit the original ThirtysixStudio website: [https://thirtysixstudio.com/](thirtysixstudio.com)
@@ -10,6 +10,10 @@ Visit the original ThirtysixStudio website: [https://thirtysixstudio.com/](thirt
 - `ReactJS`
 - `GSAP`
 - `Tailwind CSS`
+
+## Lighthouse Performance Report
+
+![Lighthouse Report](./public/lighthouse-report.png)
 
 ## 🚦Running the project:
 
