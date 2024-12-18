@@ -7,21 +7,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Path to the Lighthouse report
-const reportPath = path.join(__dirname, 'lhci-report', 'latest-report.json');
+const reportPath = path.join(__dirname, 'lhci-report', 'report.json');
 
 // Read the Lighthouse report JSON
 const getLighthouseReport = () => {
-  const report = JSON.parse(fs.readFileSync(reportPath, 'utf-8'));
-  return report;
+  try {
+    const reportContent = fs.readFileSync(reportPath, 'utf-8');
+    return JSON.parse(reportContent);
+  } catch (error) {
+    console.error("Error reading or parsing the Lighthouse report:", error.message);
+  }
 };
+
 
 // Extract scores
 const extractScores = (report) => {
-  const performance = report.categories.performance.score * 100;
-  const accessibility = report.categories.accessibility.score * 100;
-  const bestPractices = report.categories['best-practices'].score * 100;
-  const seo = report.categories.seo.score * 100;
-  const pwa = report.categories.pwa.score * 100;
+  if (!report || !report.categories) {
+    throw new Error("Invalid Lighthouse report format.");
+  }
+  const performance = report.categories.performance?.score * 100 || 0;
+  const accessibility = report.categories.accessibility?.score * 100 || 0;
+  const bestPractices = report.categories['best-practices']?.score * 100 || 0;
+  const seo = report.categories.seo?.score * 100 || 0;
+  const pwa = report.categories.pwa?.score * 100 || 0; 
 
   return { performance, accessibility, bestPractices, seo, pwa };
 };
@@ -42,7 +50,7 @@ const createScoreString = (scores) => {
 
 // Update the README with the new scores
 const updateReadme = (newScores) => {
-  const readmePath = path.join(__dirname, 'README.md');
+  const readmePath = path.join(__dirname, './README.md');
   let readmeContent = fs.readFileSync(readmePath, 'utf-8');
 
   // Replace the old Lighthouse section or append new one

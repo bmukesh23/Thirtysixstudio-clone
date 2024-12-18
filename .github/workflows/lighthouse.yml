@@ -21,23 +21,20 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       # Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Create the lhci-report folder to store the Lighthouse report
-      - name: Create lhci-report folder
-        run: mkdir -p lhci-report
-
       # Run Lighthouse CI to generate the report
       - name: Run Lighthouse CI
-        run: npx lhci autorun --output-path=lhci-report
+        # run: npx lighthouse --output-path=lhci-report/report.json 
+        run: npx lighthouse https://thirtysixstudiooclone.vercel.app --output json --output-path=lhci-report/report.json
 
-      # Check the contents of the lhci-report folder
-      - name: List lhci-report folder contents
-        run: ls -la lhci-report
+      # Check if the report is generated
+      - name: Check report
+        run: ls -la ./lhci-report/report.json
 
       # Update README with Lighthouse scores
       - name: Update README with Lighthouse scores
