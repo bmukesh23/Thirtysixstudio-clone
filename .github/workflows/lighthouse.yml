@@ -3,10 +3,10 @@ name: Lighthouse CI
 on:
   push:
     branches:
-      - master  # or the branch you're working with
+      - master
   pull_request:
     branches:
-      - master  # or the branch you're working with
+      - master
 
 jobs:
   lighthouse:
@@ -33,7 +33,11 @@ jobs:
 
       # Run Lighthouse CI to generate the report
       - name: Run Lighthouse CI
-        run: npx lhci autorun
+        run: npx lhci autorun --output-path=lhci-report
+
+      # Check the contents of the lhci-report folder
+      - name: List lhci-report folder contents
+        run: ls -la lhci-report
 
       # Update README with Lighthouse scores
       - name: Update README with Lighthouse scores
