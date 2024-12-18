@@ -27,6 +27,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Create lhci-report folder to store the Lighthouse report
+      - name: Create lhci-report folder
+        run: mkdir -p lhci-report
+
       # Run Lighthouse CI to generate the report
       - name: Run Lighthouse CI
         # run: npx lighthouse --output-path=lhci-report/report.json 
