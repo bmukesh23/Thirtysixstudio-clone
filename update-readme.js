@@ -37,7 +37,7 @@ const extractScores = (report) => {
 const createScoreString = (scores) => {
   const { performance, accessibility, bestPractices, seo} = scores;
   return `
-  ## Lighthouse Report (Page Speed Scores)
+  ## 💈Lighthouse Report (Page Speed Scores)
   
   - **Performance:** ${performance}/100
   - **Accessibility:** ${accessibility}/100
