@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import About from "./About";
 import LocomotiveScroll from "locomotive-scroll";
 import gsap from "gsap";
+import Footer from "./Footer";
 
 function App() {
   const [showCanvas, setShowCanvas] = useState(false);
@@ -137,7 +138,7 @@ function App() {
     <main
       data-scroll-container
       ref={mainRef}
-      className="w-full min-h-screen mb-40"
+      className="w-full min-h-screen mb-4"
     >
       <span
         ref={growingSpan}
@@ -179,6 +180,8 @@ function App() {
         {showCanvas && data[1].map((canvasdets, index) => <Canvas key={index} details={canvasdets} />)}
         <About />
       </div>
+
+      <Footer />
     </main>
   );
 }
