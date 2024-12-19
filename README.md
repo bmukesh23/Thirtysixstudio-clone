@@ -38,4 +38,11 @@ Visit the original ThirtysixStudio website: [https://thirtysixstudio.com/](thirt
 
 
   
-  ## 💈Lighthouse Report (Page Speed Scores)
+  
+  ## Lighthouse Report (Page Speed Scores)
+  
+  - **Performance:** 77/100
+  - **Accessibility:** 100/100
+  - **Best Practices:** 100/100
+  - **SEO:** 100/100
+  
