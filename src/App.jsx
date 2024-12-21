@@ -156,7 +156,7 @@ function App() {
           <Navbar />
 
           <div className="w-full px-1 lg:px-[25%] py-12">
-            <div className="w-full lg:w-[45%] flex flex-col gap-6">
+            <div className="w-full lg:w-[63%] xl:w-[45%] flex flex-col gap-6">
               <h3 className="text-3xl">
                 At Thirtysixstudio, we build immersive digital experiences for
                 brands with a purpose.
@@ -168,8 +168,8 @@ function App() {
             </div>
           </div>
 
-          <div className="w-full lg:pt-40 lg:pl-6 border-b border-slate-800 lg:pb-16">
-            <h1 ref={headingRef} className="text-[8rem] lg:text-[14rem] leading-none">
+          <div className="w-full lg:pt-40 lg:pl-6 border-b border-slate-800 xl:pb-12">
+            <h1 ref={headingRef} className="text-[8rem] lg:text-[9rem] xl:text-[13rem] leading-none">
               Thirtysixstudio
             </h1>
           </div>

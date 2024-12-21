@@ -19,7 +19,7 @@ const Footer = () => {
                     </div>
                     <p className="w-[75%] lg:w-[28%] text-left">All Rights Reserved &copy; 2024</p>
                 </div>
-                <p className="text-3xl lg:pl-[18%]">Thirtysixstudio</p>
+                <p className="text-3xl lg:pl-[30%] xl:pl-[22%]">Thirtysixstudio</p>
             </div>
         </footer>
     );
